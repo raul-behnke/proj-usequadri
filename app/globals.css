@@ -164,6 +164,25 @@
   .secao {
     padding-block: clamp(4.5rem, 3rem + 6vw, 9rem);
   }
+
+  /* Moldura de imagem: recorte, fio de contorno e um leve zoom no hover. */
+  .quadro {
+    position: relative;
+    overflow: hidden;
+    border-radius: 0.75rem;
+    background: var(--surface);
+    box-shadow: inset 0 0 0 1px var(--line);
+  }
+
+  .quadro img {
+    transition: transform 700ms var(--ease-saida);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .quadro:hover img {
+      transform: scale(1.035);
+    }
+  }
 }
 
 /*
@@ -203,6 +222,48 @@
   }
   .entrada-4 {
     animation-delay: 330ms;
+  }
+}
+
+/* Ondas de aproximação do aparelho. */
+.onda {
+  opacity: 0;
+  animation: onda 2.7s cubic-bezier(0.2, 0.7, 0.4, 1) infinite;
+}
+
+@keyframes onda {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.2);
+  }
+  25% {
+    opacity: 0.55;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.5);
+  }
+}
+
+/* Brilho que corre pelo corpo do aparelho, uma vez, na entrada. */
+.brilho {
+  background: linear-gradient(
+    114deg,
+    transparent 38%,
+    oklch(1 0 0 / 0.42) 50%,
+    transparent 62%
+  );
+  background-size: 260% 100%;
+  background-repeat: no-repeat;
+  animation: brilho 1.6s cubic-bezier(0.16, 1, 0.3, 1) 0.65s both;
+}
+
+@keyframes brilho {
+  from {
+    background-position: 190% 0;
+  }
+  to {
+    background-position: -90% 0;
   }
 }
 

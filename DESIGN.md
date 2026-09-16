@@ -67,11 +67,28 @@ tem que informar, não gritar.
 
 ## Movimento
 
-- Entrada do hero: quatro elementos escalonados, 900ms, `ease-out-quart`
-- Revelação por rolagem: `animation-timeline: view()`, **só transform, nunca
-  opacidade**. O conteúdo nunca depende de animação para existir — a primeira
-  versão usava opacidade e as seções renderizavam em branco fora da viewport
-- Tudo dentro de `prefers-reduced-motion: no-preference`
+Regra que vale para tudo: **nenhuma animação decide se o conteúdo existe.**
+A primeira versão revelava seções com opacidade e elas renderizavam em branco
+fora da viewport. Agora a revelação mexe só em `transform`.
+
+- **Entrada do hero**: quatro elementos escalonados, 900ms, `ease-out-quart`
+- **Aparelho** (`components/ui/Produto.tsx`, `motion`): parallax por
+  `useScroll` + `useTransform` — sobe mais devagar que o texto, com 2° de
+  rotação ao longo do percurso
+- **Ondas de aproximação**: três anéis em CSS saindo do símbolo contactless em
+  45%/14% da imagem, achatados (`scaleY(0.42)`) e girados (`-24°`) para
+  acompanhar o plano inclinado da tampa. É o gesto que vende o produto
+- **Brilho**: passa uma vez pelo corpo do aparelho, recortado pelo alpha da
+  própria foto usada como `mask-image`
+- **Valor da calculadora** (`components/ui/ValorAnimado.tsx`): transita até o
+  novo número em vez de saltar. Único lugar onde a animação carrega
+  informação — dá para ver o dinheiro subir ou descer ao trocar a forma de
+  pagamento
+- **Imagens**: zoom de 3,5% no hover, 700ms
+- Tudo guardado por `prefers-reduced-motion` (CSS) e `useReducedMotion` (JS)
+
+Custo: a `motion` levou o First Load JS de 109 KB para 161 KB. Ainda é 3,4×
+mais leve que os 547 KB do site antigo.
 
 ## Componentes
 

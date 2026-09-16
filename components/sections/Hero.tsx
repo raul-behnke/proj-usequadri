@@ -1,5 +1,5 @@
-import Image from "next/image";
 import { Botao } from "@/components/ui/Botao";
+import { Produto } from "@/components/ui/Produto";
 import { linkContato, produto, taxas, temWhatsApp } from "@/content/site";
 import { formatarPercentual } from "@/lib/calculator";
 
@@ -54,18 +54,7 @@ export function Hero() {
           </div>
         </div>
 
-        <div className="relative flex justify-center lg:justify-end">
-          <Image
-            src={produto.imagem}
-            alt={produto.alt}
-            width={673}
-            height={1010}
-            priority
-            sizes="(max-width: 1024px) 70vw, 34vw"
-            className="entrada h-auto w-[min(78%,20rem)] lg:w-[min(100%,25rem)]"
-            style={{ filter: "drop-shadow(var(--sombra-produto))" }}
-          />
-        </div>
+        <Produto />
       </div>
 
       {/* Faixa de taxas: mesmo bloco escuro, sem costura com o hero. */}

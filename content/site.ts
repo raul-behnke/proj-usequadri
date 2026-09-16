@@ -101,20 +101,52 @@ export const formasDeReceber = [
     titulo: "Maquininha",
     texto:
       "Cartão, aproximação e chip. Funciona com 4G e Wi-Fi, com bateria que aguenta o dia inteiro.",
+    imagem: "/img/forma-maquininha.webp",
+    alt: "Maquininha Quadri sobre o balcão de mármore de uma cafeteria, ao lado de um café com leite",
   },
   {
     titulo: "Tap no celular",
     texto:
       "O próprio celular vira maquininha. O cliente aproxima o cartão na tela e pronto.",
+    imagem: "/img/forma-tap.webp",
+    alt: "Cliente aproximando o cartão da tela do celular de um lojista para pagar",
   },
   {
     titulo: "Link de pagamento",
     texto:
       "Manda o link por WhatsApp e recebe de quem está longe, sem maquininha nenhuma.",
+    imagem: "/img/forma-link.webp",
+    alt: "Mão segurando um celular com uma tela de cobrança aberta, dentro de uma loja",
   },
   {
     titulo: "Pix",
     texto: "Zero de taxa, cai na hora, direto na sua conta digital Quadri.",
+    imagem: "/img/forma-pix.webp",
+    alt: "Cliente lendo com o celular um QR code de Pix apoiado no balcão de uma padaria",
+  },
+];
+
+/** Cenas por vertical, geradas na mesma direção de arte da foto do balcão. */
+export const cenas = [
+  {
+    imagem: "/img/vertical-salao.webp",
+    alt: "Maquininha Quadri na bancada de madeira de uma barbearia, com cadeira de barbeiro ao fundo",
+    legenda: "Barbearias e salões",
+  },
+  {
+    imagem: "/img/vertical-farmacia.webp",
+    alt: "Maquininha Quadri no balcão claro de uma farmácia de bairro",
+    legenda: "Farmácias e drogarias",
+  },
+  {
+    imagem: "/img/vertical-mercearia.webp",
+    alt: "Maquininha Quadri no balcão de uma mercearia, ao lado de caixas de frutas",
+    legenda: "Mercearias e hortifrútis",
+  },
+  {
+    imagem: "/img/vertical-foodtruck.webp",
+    alt: "Maquininha Quadri no balcão de aço de um food truck à noite, com luzes ao fundo",
+    legenda: "Delivery e food trucks",
   },
 ];
 

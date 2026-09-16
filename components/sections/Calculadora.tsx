@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { taxas } from "@/content/site";
 import { formatarPercentual, formatarReal, simular } from "@/lib/calculator";
+import { ValorAnimado } from "@/components/ui/ValorAnimado";
 
 const MIN = 20;
 const MAX = 20000;
@@ -94,7 +95,7 @@ export function Calculadora() {
         >
           <p className="text-menor text-muted">Você recebe {r.prazo}</p>
           <p className="numero mt-2 text-t1 font-bold text-brand">
-            {formatarReal(r.liquido)}
+            <ValorAnimado valor={r.liquido} />
           </p>
 
           <dl className="mt-8 space-y-4 text-menor">

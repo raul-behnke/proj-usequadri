@@ -1,4 +1,5 @@
-import { depoimentos, segmentos } from "@/content/site";
+import Image from "next/image";
+import { cenas, depoimentos, segmentos } from "@/content/site";
 
 /**
  * Depoimentos e segmentos numa seção só: quem fala e de que tipo de negócio
@@ -12,7 +13,30 @@ export function Clientes() {
           Comércio de rua, de todo tipo, no Brasil inteiro.
         </h2>
 
-        <div className="revelar mt-12 grid gap-x-10 gap-y-10 lg:grid-cols-3">
+        <div className="revelar mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {cenas.map((cena) => (
+            <figure key={cena.imagem}>
+              {/* O aparelho fica à direita do centro em todas as cenas; o
+                  recorte vertical precisa acompanhar. */}
+              <div className="quadro aspect-[4/5] w-full sm:aspect-[3/4]">
+                <Image
+                  src={cena.imagem}
+                  alt={cena.alt}
+                  width={1400}
+                  height={933}
+                  loading="lazy"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                  className="h-full w-full object-cover object-[64%_center]"
+                />
+              </div>
+              <figcaption className="mt-3 text-menor text-muted">
+                {cena.legenda}
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+
+        <div className="revelar mt-16 grid gap-x-10 gap-y-10 lg:grid-cols-3">
           {depoimentos.map((d) => (
             <figure key={d.autor} className="border-t-2 border-ink pt-6">
               <blockquote className="text-guia leading-snug">
