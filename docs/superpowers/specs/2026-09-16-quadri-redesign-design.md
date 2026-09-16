@@ -100,7 +100,9 @@ O card 5 (tecnologia/equipamento) é absorvido pela seção 1, onde o produto j�
 
 ## 4. Direção visual
 
-Herdado do site atual: Inter e Space Grotesk, raio de borda 10 px (`.625rem`), e os quatro quadrados do logo como motivo gráfico (grids, divisórias, ícones).
+Herdado do site atual: raio de borda 10 px (`.625rem`) e os quatro quadrados do logo como motivo gráfico (grids, divisórias, marcadores de lista).
+
+**Tipografia — alterado durante a implementação.** A intenção original era herdar Inter e Space Grotesk. As duas são defaults do Lovable, não identidade da marca, e ambas estão entre as fontes que a revisão de frontend trata como reflexo de ferramenta. O site usa **Archivo variável**, nos eixos de peso e largura: títulos e números em `wdth 112–118`, corpo em `wdth 100`. Uma família só, com contraste real de largura e algarismos tabulares — o que uma página cujo conteúdo principal é número precisa.
 
 ### Paleta
 
@@ -111,10 +113,13 @@ Calibrada a partir do produto físico e do wordmark, não do CSS atual.
 | `navy` | `#0F1B3D` | Texto forte no tema claro; base do wordmark |
 | `navy-deep` | `#0B1226` | Fundo dos blocos escuros |
 | `blue-product` | `#7BA7F0` | Tom do aparelho; destaques, glow, gráficos |
-| `blue-action` | `#3B82F6` | Botões e links (mantém a primária atual) |
+| `blue-action` | `oklch(0.5 0.16 262)` | Botões, ícones e números sobre fundo claro |
+| `signal` | `oklch(0.56 0.19 32)` | Vermelho-sinal, só onde há dinheiro descontado |
 | Neutros | escala cinza fria | Fundos claros, bordas, texto secundário |
 
 O CSS atual traz variáveis chamadas `--quadri-green` que na verdade contêm azul — resquício de uma troca de marca. Os nomes novos descrevem a cor real.
+
+O `#3B82F6` previsto originalmente para os botões era o `blue-500` do Tailwind, e o azul do aparelho não alcança 4,5:1 sobre fundo claro. O tom de ação passou a derivar do navy do wordmark, mais fundo, e entrou um vermelho-sinal restrito aos valores descontados — contrapeso para a página não se resolver como "fintech azul".
 
 ### Ritmo de tema
 

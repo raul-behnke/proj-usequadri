@@ -1,0 +1,218 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------- tokens */
+/*
+ * Tema por bloco, não por preferência do usuário: escuro é dinheiro (taxas,
+ * calculadora, fechamento), claro é explicação. As seções trocam `data-tema`
+ * e os componentes leem sempre as mesmas variáveis semânticas.
+ */
+
+:root {
+  --bg: oklch(0.985 0.003 265);
+  --surface: oklch(1 0 0);
+  --ink: oklch(0.21 0.04 265);
+  --muted: oklch(0.46 0.022 265);
+  --line: oklch(0.9 0.008 265);
+  /* Azul do aparelho: identidade física da marca. */
+  --brand: oklch(0.72 0.11 264);
+  --brand-soft: oklch(0.93 0.035 264);
+  --action: oklch(0.5 0.16 262);
+  --action-hover: oklch(0.44 0.16 262);
+  --action-ink: oklch(0.99 0 0);
+  /* Vermelho-sinal: só onde há dinheiro economizado. Nunca decorativo. */
+  --signal: oklch(0.56 0.19 32);
+
+  --sombra-produto: 0 40px 80px -30px oklch(0.21 0.04 265 / 0.35);
+
+  --passo-1: clamp(0.875rem, 0.84rem + 0.18vw, 0.95rem);
+  --passo-0: clamp(1rem, 0.96rem + 0.22vw, 1.125rem);
+  --passo-1a: clamp(1.25rem, 1.18rem + 0.35vw, 1.45rem);
+  --passo-2: clamp(1.55rem, 1.4rem + 0.75vw, 2rem);
+  --passo-3: clamp(2rem, 1.7rem + 1.5vw, 2.9rem);
+  --passo-4: clamp(2.1rem, 1.6rem + 2.6vw, 3.6rem);
+  --passo-5: clamp(3rem, 2rem + 5vw, 5.5rem);
+
+  --z-nav: 100;
+  --z-menu: 200;
+}
+
+[data-tema="escuro"] {
+  --bg: oklch(0.17 0.04 265);
+  --surface: oklch(0.225 0.045 265);
+  --ink: oklch(0.97 0.005 265);
+  --muted: oklch(0.755 0.022 265);
+  --line: oklch(0.32 0.035 265);
+  --brand: oklch(0.78 0.12 264);
+  --brand-soft: oklch(0.3 0.06 264);
+  --action: oklch(0.74 0.13 263);
+  --action-hover: oklch(0.8 0.12 263);
+  --action-ink: oklch(0.18 0.045 265);
+  --signal: oklch(0.75 0.17 42);
+
+  --sombra-produto: 0 60px 120px -40px oklch(0.05 0.06 264 / 0.9);
+
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-brand: var(--brand);
+  --color-brand-soft: var(--brand-soft);
+  --color-action: var(--action);
+  --color-action-hover: var(--action-hover);
+  --color-action-ink: var(--action-ink);
+  --color-signal: var(--signal);
+
+  --font-sans: var(--fonte-archivo), ui-sans-serif, system-ui, sans-serif;
+
+  --text-menor: var(--passo-1);
+  --text-corpo: var(--passo-0);
+  --text-guia: var(--passo-1a);
+  --text-t3: var(--passo-2);
+  --text-t2: var(--passo-3);
+  --text-t1: var(--passo-4);
+  --text-display: var(--passo-5);
+
+  --ease-saida: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ------------------------------------------------------------------ base */
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /* Altura da barra fixa, para as âncoras não pararem embaixo dela. */
+    scroll-padding-top: 5.5rem;
+  }
+
+  body {
+    /* `clip` e não `hidden`: corta o vazamento dos halos sem quebrar o
+       `position: sticky` do cabeçalho. */
+    overflow-x: clip;
+    background: var(--bg);
+    color: var(--ink);
+    font-size: var(--passo-0);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  section {
+    background: var(--bg);
+    color: var(--ink);
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+    line-height: 1.04;
+    letter-spacing: -0.03em;
+    font-weight: 700;
+    /* Largura expandida do eixo variável: a voz de placa de comércio. */
+    font-variation-settings: "wdth" 112;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  a,
+  button,
+  summary,
+  input {
+    &:focus-visible {
+      outline: 3px solid var(--action);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+  }
+
+  /* Texto claro sobre fundo escuro pesa menos: respira mais. */
+  [data-tema="escuro"] p {
+    line-height: 1.68;
+  }
+
+  summary::-webkit-details-marker {
+    display: none;
+  }
+}
+
+/* ------------------------------------------------------------- utilitários */
+
+@layer utilities {
+  /* Números são o conteúdo desta página: sempre tabulares, sempre expandidos. */
+  .numero {
+    font-variant-numeric: tabular-nums;
+    font-variation-settings: "wdth" 118;
+    letter-spacing: -0.035em;
+  }
+
+  .largura {
+    width: min(100% - 2.5rem, 76rem);
+    margin-inline: auto;
+  }
+
+  .prosa {
+    max-width: 62ch;
+  }
+
+  .secao {
+    padding-block: clamp(4.5rem, 3rem + 6vw, 9rem);
+  }
+}
+
+/*
+ * Revelação por scroll-timeline. O conteúdo nunca fica invisível: a animação
+ * mexe só na posição, nada de opacidade. Se o navegador não suportar, se a
+ * pessoa pedir menos movimento, ou se a página for renderizada sem rolagem
+ * (impressão, leitor, crawler), o texto continua lá, legível.
+ */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .revelar {
+      animation: revelar linear both;
+      animation-timeline: view();
+      animation-range: entry 5% entry 60%;
+    }
+  }
+}
+
+@keyframes revelar {
+  from {
+    transform: translateY(1.5rem);
+  }
+  to {
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .entrada {
+    animation: entrada 900ms var(--ease-saida) both;
+  }
+  .entrada-2 {
+    animation-delay: 110ms;
+  }
+  .entrada-3 {
+    animation-delay: 220ms;
+  }
+  .entrada-4 {
+    animation-delay: 330ms;
+  }
+}
+
+@keyframes entrada {
+  from {
+    opacity: 0;
+    transform: translateY(1.25rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
