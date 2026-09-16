@@ -90,12 +90,25 @@ fora da viewport. Agora a revelação mexe só em `transform`.
 Custo: a `motion` levou o First Load JS de 109 KB para 161 KB. Ainda é 3,4×
 mais leve que os 547 KB do site antigo.
 
+## Imagem de fundo
+
+Uma seção só usa foto como fundo: a faixa de prova (+2.500 · R$ 125 Mi · 98% ·
+100%), sobre a foto real do balcão da cafeteria. Véu navy em degradê de 96% a
+82% de opacidade — medido no navegador, o texto bate 9:1 sobre a foto, bem
+acima do mínimo de 4,5:1. A foto entra como atmosfera, nunca como concorrente
+do número.
+
+As demais cenas continuam em moldura (`.quadro`), na faixa de segmentos.
+
 ## Componentes
 
 - **Botão** (`components/ui/Botao.tsx`): primário e secundário, altura mínima
   3,25rem
 - **Marca** (`components/ui/Marca.tsx`): símbolo de quatro quadrados em SVG,
   usado também como marcador de lista
+- **Ícones** (`components/ui/Icone.tsx`): os quatro das formas de receber,
+  desenhados na gramática do símbolo da marca — quadrados de canto levemente
+  arredondado, traço 1,6, grid de 24, `currentColor`. Sem biblioteca de ícones
 - **FAQ**: `<details>` nativo. Sem biblioteca de accordion
 - **Calculadora**: `<input type="range">` e `<input type="number">` nativos
 

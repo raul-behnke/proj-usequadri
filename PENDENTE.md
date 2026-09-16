@@ -28,13 +28,17 @@ razoável — nada fica quebrado, mas nada disso deve ir ao ar sem revisão.
    `/politica-de-cookies` e `/termos-de-uso`. Nenhuma existe ainda. Ou mandam
    os textos, ou os links saem do ar até existirem.
 
-6. **As sete fotos de cenário são geradas por IA.** Barbearia, farmácia,
-   mercearia, food truck, tap no celular, link de pagamento e Pix foram
-   criadas com `gpt-image-2`, usando a foto de estúdio do aparelho como
-   referência. Não são estabelecimentos reais nem clientes reais. Para
-   ilustrar uso do produto isso é prática comum, mas a decisão é de vocês — e
-   se a página passar a sugerir que são clientes Quadri, vira problema. A
-   única foto real é a do balcão da cafeteria, que veio de vocês.
+6. **As quatro cenas de vertical são geradas por IA.** Barbearia, farmácia,
+   mercearia e food truck foram criadas com `gpt-image-2`, usando a foto de
+   estúdio do aparelho como referência. Não são estabelecimentos reais nem
+   clientes reais. Para ilustrar uso do produto isso é prática comum, mas a
+   decisão é de vocês — e se a página passar a sugerir que são clientes
+   Quadri, vira problema. A foto do balcão da cafeteria, que fecha a faixa de
+   prova, é real e veio de vocês.
+
+   Três cenas geradas (tap no celular, link de pagamento e Pix) saíram da
+   página quando as formas de receber viraram ícones. Ficaram guardadas em
+   `assets-extra/`, fora do que é publicado.
 
 ## Melhoram o resultado
 

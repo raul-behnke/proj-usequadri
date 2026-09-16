@@ -1,67 +1,41 @@
-import Image from "next/image";
 import { formasDeReceber } from "@/content/site";
+import { icones } from "@/components/ui/Icone";
 
 /**
- * Uma cena grande abrindo e três menores em seguida — não quatro caixas
- * iguais. A maquininha é a porta de entrada e ocupa o espaço proporcional a
- * isso.
+ * Quatro formas em linhas separadas por fio, com o ícone ancorando cada uma.
+ * Sem caixa, sem sombra, sem card: o ícone e o fio já dão a estrutura.
  */
 export function FormasDeReceber() {
-  const [principal, ...demais] = formasDeReceber;
-
   return (
     <section className="secao">
-      <div className="largura">
-        <div className="grid gap-x-16 gap-y-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
+      <div className="largura grid gap-x-16 gap-y-10 lg:grid-cols-[0.8fr_1.2fr]">
+        <div>
           <h2 className="text-t2">Quatro jeitos de receber. Um só lugar.</h2>
-          <p className="prosa text-muted lg:pb-1">
+          <p className="prosa mt-5 text-muted">
             O dinheiro cai na mesma conta digital, com o mesmo painel, venha de
             onde vier.
           </p>
         </div>
 
-        <figure className="revelar mt-12 lg:mt-16">
-          <div className="quadro aspect-[16/9] w-full">
-            <Image
-              src={principal.imagem}
-              alt={principal.alt}
-              width={1400}
-              height={788}
-              sizes="(max-width: 1024px) 100vw, 76rem"
-              className="h-full w-full object-cover"
-            />
-          </div>
-          <figcaption className="mt-5 grid gap-x-10 gap-y-2 sm:grid-cols-[13rem_1fr]">
-            <span className="text-guia font-semibold">{principal.titulo}</span>
-            <span className="prosa text-muted">{principal.texto}</span>
-          </figcaption>
-        </figure>
-
-        <div className="revelar mt-12 grid gap-x-8 gap-y-10 sm:grid-cols-3">
-          {demais.map((forma) => (
-            <figure key={forma.titulo}>
-              <div className="quadro aspect-[4/3] w-full">
-                <Image
-                  src={forma.imagem}
-                  alt={forma.alt}
-                  width={1400}
-                  height={933}
-                  loading="lazy"
-                  sizes="(max-width: 640px) 100vw, 25vw"
-                  className="h-full w-full object-cover"
-                />
-              </div>
-              <figcaption className="mt-4">
-                <span className="block text-guia font-semibold">
-                  {forma.titulo}
-                </span>
-                <span className="mt-1.5 block text-menor text-muted">
+        <dl className="revelar">
+          {formasDeReceber.map((forma, i) => {
+            const Icone = icones[forma.icone];
+            return (
+              <div
+                key={forma.titulo}
+                className={`grid grid-cols-[auto_1fr] items-start gap-x-5 gap-y-2 py-7 sm:grid-cols-[auto_13.5rem_1fr] ${
+                  i > 0 ? "border-t border-line" : "sm:pt-0"
+                }`}
+              >
+                <Icone className="h-9 w-9 shrink-0 text-action" />
+                <dt className="text-guia font-semibold sm:whitespace-nowrap">{forma.titulo}</dt>
+                <dd className="prosa col-start-2 text-muted sm:col-start-3">
                   {forma.texto}
-                </span>
-              </figcaption>
-            </figure>
-          ))}
-        </div>
+                </dd>
+              </div>
+            );
+          })}
+        </dl>
       </div>
     </section>
   );

@@ -1,3 +1,5 @@
+import type { NomeIcone } from "@/components/ui/Icone";
+
 /**
  * Fonte única de verdade do conteúdo do site.
  *
@@ -96,33 +98,29 @@ export const produto = {
   alt: "Maquininha Quadri azul, com impressora de bobina e tela mostrando o logo useQuadri",
 };
 
-export const formasDeReceber = [
+export const formasDeReceber: { titulo: string; texto: string; icone: NomeIcone }[] = [
   {
     titulo: "Maquininha",
     texto:
       "Cartão, aproximação e chip. Funciona com 4G e Wi-Fi, com bateria que aguenta o dia inteiro.",
-    imagem: "/img/forma-maquininha.webp",
-    alt: "Maquininha Quadri sobre o balcão de mármore de uma cafeteria, ao lado de um café com leite",
+    icone: "maquininha",
   },
   {
     titulo: "Tap no celular",
     texto:
       "O próprio celular vira maquininha. O cliente aproxima o cartão na tela e pronto.",
-    imagem: "/img/forma-tap.webp",
-    alt: "Cliente aproximando o cartão da tela do celular de um lojista para pagar",
+    icone: "tap",
   },
   {
     titulo: "Link de pagamento",
     texto:
       "Manda o link por WhatsApp e recebe de quem está longe, sem maquininha nenhuma.",
-    imagem: "/img/forma-link.webp",
-    alt: "Mão segurando um celular com uma tela de cobrança aberta, dentro de uma loja",
+    icone: "link",
   },
   {
     titulo: "Pix",
     texto: "Zero de taxa, cai na hora, direto na sua conta digital Quadri.",
-    imagem: "/img/forma-pix.webp",
-    alt: "Cliente lendo com o celular um QR code de Pix apoiado no balcão de uma padaria",
+    icone: "pix",
   },
 ];
 
@@ -193,6 +191,12 @@ export const passos = [
       "Acompanhe seus recebimentos, gerencie suas vendas e sinta a diferença no caixa todo mês.",
   },
 ];
+
+/** Fundo da faixa de prova. Foto real do balcão, fornecida pelo cliente. */
+export const provaFundo = {
+  imagem: "/img/forma-maquininha.webp",
+  alt: "Maquininha Quadri sobre o balcão de mármore de uma cafeteria",
+};
 
 /** TODO(cliente): confirmar se os números seguem atualizados antes de publicar. */
 export const numeros = [

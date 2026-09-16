@@ -1,19 +1,45 @@
-import { numeros } from "@/content/site";
+import Image from "next/image";
+import { numeros, provaFundo } from "@/content/site";
 
+/**
+ * Única seção com foto de fundo. O véu navy é opaco o bastante para os
+ * números baterem AA com folga — a foto entra como atmosfera, não como
+ * concorrente do texto.
+ */
 export function Numeros() {
   return (
-    <section data-tema="escuro" className="border-t border-line">
-      <div className="largura py-14 lg:py-16">
+    <section data-tema="escuro" className="relative isolate overflow-hidden">
+      <Image
+        src={provaFundo.imagem}
+        alt=""
+        role="presentation"
+        width={1400}
+        height={788}
+        sizes="100vw"
+        className="absolute inset-0 -z-10 h-full w-full object-cover object-[60%_center]"
+      />
+
+      {/* Véu: navy chapado por baixo, degradê por cima para a foto respirar. */}
+      <div
+        aria-hidden
+        className="absolute inset-0 -z-10"
+        style={{
+          background:
+            "linear-gradient(100deg, oklch(0.14 0.04 265 / 0.96) 0%, oklch(0.14 0.04 265 / 0.92) 45%, oklch(0.14 0.04 265 / 0.82) 100%)",
+        }}
+      />
+
+      <div className="largura py-20 lg:py-24">
         <p className="prosa text-guia">
           Quem escolheu a Quadri aprovou e não voltou atrás.
         </p>
 
-        <dl className="revelar mt-9 grid grid-cols-2 gap-x-6 gap-y-9 lg:grid-cols-4">
+        <dl className="revelar mt-10 grid grid-cols-2 gap-x-6 gap-y-9 lg:grid-cols-4">
           {numeros.map((item) => (
             <div key={item.rotulo}>
               <dt className="sr-only">{item.rotulo}</dt>
               <dd>
-                <span className="numero block text-t2 font-bold text-brand">
+                <span className="numero block text-t3 font-bold whitespace-nowrap text-brand lg:text-t2">
                   {item.valor}
                 </span>
                 <span className="mt-1 block text-menor text-muted">
