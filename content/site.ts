@@ -1,6 +1,16 @@
 import type { NomeIcone } from "@/components/ui/Icone";
 
 /**
+ * Prefixo das imagens. Publicações em subpasta (ex.: lamna.tech/usequadri)
+ * precisam dele: o `basePath` do Next não reescreve caminho literal passado
+ * para `next/image` quando as imagens não são otimizadas.
+ *
+ * Tem que ser `NEXT_PUBLIC_`: o caminho é remontado no cliente durante a
+ * hidratação, e uma variável só de build viraria `undefined` lá.
+ */
+const IMG = `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/img`;
+
+/**
  * Fonte única de verdade do conteúdo do site.
  *
  * Toda taxa exibida na página vem daqui — a faixa do hero e a calculadora leem
@@ -94,12 +104,12 @@ export const produto = {
   precoDe: "12x de R$ 79,90",
   precoPor: "12x de R$ 16,58",
   precoAVista: "R$ 199",
-  imagem: "/img/hero-pagamentos.webp",
+  imagem: `${IMG}/hero-pagamentos.webp`,
   alt: "Maquininha Quadri ao centro, um cliente pagando por aproximação com o celular de um lado e com cartão de crédito do outro",
   /* A mesma cena montada em retrato, para telas estreitas. */
-  imagemMobile: "/img/hero-pagamentos-mobile.webp",
+  imagemMobile: `${IMG}/hero-pagamentos-mobile.webp`,
   /* Recorte do aparelho sozinho, disponível para outros usos. */
-  imagemSozinho: "/img/maquininha.webp",
+  imagemSozinho: `${IMG}/maquininha.webp`,
   altSozinho:
     "Maquininha Quadri azul, com impressora de bobina e tela mostrando o logo useQuadri",
 };
@@ -138,12 +148,12 @@ export const formasDeReceber: { titulo: string; texto: string; icone: NomeIcone 
  */
 export const cenasDestaque = [
   {
-    imagem: "/img/pessoas-atendimento.webp",
+    imagem: `${IMG}/pessoas-atendimento.webp`,
     alt: "Lojista de avental estende a maquininha Quadri sobre o balcão para uma cliente aproximar o cartão",
     legenda: "No balcão, na mão de quem atende",
   },
   {
-    imagem: "/img/pessoas-balcao.webp",
+    imagem: `${IMG}/pessoas-balcao.webp`,
     alt: "Cliente paga por aproximação com o celular na maquininha Quadri segurada pelo lojista",
     legenda: "Pagamento por aproximação, em segundos",
   },
@@ -151,42 +161,42 @@ export const cenasDestaque = [
 
 export const cenas = [
   {
-    imagem: "/img/vertical-salao.webp",
+    imagem: `${IMG}/vertical-salao.webp`,
     alt: "Maquininha Quadri na bancada de madeira de uma barbearia, com cadeira de barbeiro ao fundo",
     legenda: "Barbearias e salões",
   },
   {
-    imagem: "/img/vertical-farmacia.webp",
+    imagem: `${IMG}/vertical-farmacia.webp`,
     alt: "Maquininha Quadri no balcão claro de uma farmácia de bairro",
     legenda: "Farmácias e drogarias",
   },
   {
-    imagem: "/img/vertical-padaria.webp",
+    imagem: `${IMG}/vertical-padaria.webp`,
     alt: "Maquininha Quadri no balcão de mármore de uma padaria, com cestos de pão ao fundo",
     legenda: "Padarias e confeitarias",
   },
   {
-    imagem: "/img/vertical-mercearia.webp",
+    imagem: `${IMG}/vertical-mercearia.webp`,
     alt: "Maquininha Quadri no balcão de uma mercearia, ao lado de caixas de frutas",
     legenda: "Mercearias e hortifrútis",
   },
   {
-    imagem: "/img/vertical-roupas.webp",
+    imagem: `${IMG}/vertical-roupas.webp`,
     alt: "Maquininha Quadri no balcão de caixa de uma loja de roupas, com araras ao fundo",
     legenda: "Roupas e calçados",
   },
   {
-    imagem: "/img/vertical-petshop.webp",
+    imagem: `${IMG}/vertical-petshop.webp`,
     alt: "Maquininha Quadri no balcão de um pet shop, com prateleiras de ração ao fundo",
     legenda: "Pet shops",
   },
   {
-    imagem: "/img/vertical-oficina.webp",
+    imagem: `${IMG}/vertical-oficina.webp`,
     alt: "Maquininha Quadri na bancada de uma oficina mecânica, com carro e ferramentas ao fundo",
     legenda: "Oficinas e autopeças",
   },
   {
-    imagem: "/img/vertical-foodtruck.webp",
+    imagem: `${IMG}/vertical-foodtruck.webp`,
     alt: "Maquininha Quadri no balcão de aço de um food truck à noite, com luzes ao fundo",
     legenda: "Delivery e food trucks",
   },
@@ -195,19 +205,19 @@ export const cenas = [
 /** Recortes de produto para os blocos que hoje são só texto. */
 export const produtoAngulos = {
   comprovante: {
-    imagem: "/img/produto-comprovante.webp",
+    imagem: `${IMG}/produto-comprovante.webp`,
     alt: "Maquininha Quadri imprimindo um comprovante de papel",
   },
   tras: {
-    imagem: "/img/produto-tras.webp",
+    imagem: `${IMG}/produto-tras.webp`,
     alt: "Maquininha Quadri vista de três quartos, mostrando a lateral e a tampa da impressora",
   },
   deitada: {
-    imagem: "/img/produto-deitada.webp",
+    imagem: `${IMG}/produto-deitada.webp`,
     alt: "Maquininha Quadri deitada, vista de cima em ângulo",
   },
   aberta: {
-    imagem: "/img/produto-aberta.webp",
+    imagem: `${IMG}/produto-aberta.webp`,
     alt: "Maquininha Quadri com a tampa aberta, mostrando a bobina de papel encaixada",
   },
 } as const;
@@ -260,7 +270,7 @@ export const passos = [
 
 /** Fundo da faixa de prova. Foto real do balcão, fornecida pelo cliente. */
 export const provaFundo = {
-  imagem: "/img/forma-maquininha.webp",
+  imagem: `${IMG}/forma-maquininha.webp`,
   alt: "Maquininha Quadri sobre o balcão de mármore de uma cafeteria",
 };
 

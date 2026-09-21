@@ -12,6 +12,22 @@ npm run build   # gera out/ — site estático
 
 Deploy: qualquer host estático. Na Vercel, funciona sem configuração.
 
+### Publicar em subpasta
+
+A pré-visualização vive em `lamna.tech/usequadri`, servida por nginx a partir
+de `/var/www/lamna.tech/usequadri/` na VPS.
+
+```bash
+NEXT_PUBLIC_BASE_PATH=/usequadri npm run build
+rsync -az --delete out/ root@179.198.120.244:/var/www/lamna.tech/usequadri/
+ssh root@179.198.120.244 'chown -R www-data:www-data /var/www/lamna.tech/usequadri'
+```
+
+A variável precisa do prefixo `NEXT_PUBLIC_`: os caminhos das imagens são
+remontados no cliente durante a hidratação, e uma variável só de build viraria
+`undefined` lá. Builds com `NEXT_PUBLIC_BASE_PATH` também saem com
+`noindex`, para a prévia não disputar busca com o site oficial.
+
 ## Onde as coisas estão
 
 | Caminho | O quê |

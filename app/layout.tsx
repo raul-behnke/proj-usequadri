@@ -17,6 +17,12 @@ const archivo = Archivo({
 
 const url = "https://usequadri.com";
 
+/**
+ * Publicações em subpasta são pré-visualização. Elas não podem ser indexadas:
+ * o conteúdo é o mesmo do site oficial e disputaria busca com ele.
+ */
+const previa = Boolean(process.env.NEXT_PUBLIC_BASE_PATH);
+
 export const metadata: Metadata = {
   metadataBase: new URL(url),
   title: "Quadri — maquininha com Pix sem taxa e crédito a partir de 2,69%",
@@ -40,7 +46,7 @@ export const metadata: Metadata = {
     description:
       "Pix 0,00%, débito 0,75%, crédito 2,69%. Sem mensalidade, sem fidelidade.",
   },
-  robots: { index: true, follow: true },
+  robots: previa ? { index: false, follow: false } : { index: true, follow: true },
 };
 
 export const viewport = {
