@@ -26,10 +26,10 @@ export function Produto() {
   const y = useTransform(scrollYProgress, [0, 1], [26, -26]);
 
   return (
-    <div ref={alvo} className="relative z-10 flex items-end px-4 pb-10 lg:pb-16">
+    <div ref={alvo} className="relative z-10 flex items-end">
       <motion.div
         style={semMovimento ? undefined : { y }}
-        className="mx-auto w-full max-w-[74rem]"
+        className="w-full"
       >
         {/*
           Abaixo de 640px a cena inteira encolhe a ponto de os rótulos dos
@@ -43,7 +43,7 @@ export function Produto() {
           height={1010}
           priority
           sizes="60vw"
-          className="mx-auto h-auto w-[min(62%,15rem)] sm:hidden"
+          className="mx-auto mb-10 h-auto w-[min(62%,15rem)] sm:hidden"
         />
         <Image
           src={produto.imagem}
@@ -51,7 +51,7 @@ export function Produto() {
           width={1600}
           height={869}
           priority
-          sizes="(max-width: 1024px) 100vw, 74rem"
+          sizes="100vw"
           className="hidden h-auto w-full max-w-none sm:block"
         />
       </motion.div>
