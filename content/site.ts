@@ -32,8 +32,8 @@ export const empresa = {
   assinatura: "Menos taxa. Mais lucro. Mais negócio.",
 } as const;
 
-/** TODO(cliente): número real do WhatsApp comercial. */
-const WHATSAPP_TELEFONE = "";
+/** Extraído do próprio site publicado da Quadri (DDD 41, Curitiba/PR). */
+const WHATSAPP_TELEFONE: string = "5541984334196";
 
 const MENSAGEM_PADRAO =
   "Olá! Vim pelo site e quero saber mais sobre a maquininha Quadri.";

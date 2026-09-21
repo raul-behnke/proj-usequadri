@@ -6,10 +6,10 @@ razoável — nada fica quebrado, mas nada disso deve ir ao ar sem revisão.
 
 ## Bloqueiam a publicação
 
-1. **Número do WhatsApp comercial.** `content/site.ts`, constante
-   `WHATSAPP_TELEFONE`. Enquanto estiver vazio, todos os CTAs abrem o e-mail
-   `contato@quadri.com.br` em vez de um link `wa.me` quebrado. Preencher no
-   formato `5548999999999`.
+1. ~~**Número do WhatsApp comercial.**~~ **Resolvido.** O número estava no
+   próprio bundle do site publicado da Quadri: `5541984334196` (DDD 41,
+   Curitiba/PR). Os CTAs agora abrem o WhatsApp direto. Confirmar com o
+   cliente se é o número comercial correto antes de divulgar.
 
 2. **Respostas do FAQ.** As cinco perguntas vieram do site atual; as respostas
    não existiam no HTML publicado. Escrevi provisórias a partir do que o
