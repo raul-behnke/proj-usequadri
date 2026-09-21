@@ -8,8 +8,10 @@
  */
 
 :root {
-  --bg: oklch(0.985 0.003 265);
+  --bg: oklch(1 0 0);
   --surface: oklch(1 0 0);
+  /* Cartão do bento: cinza claro. O painel branco vai dentro dele. */
+  --card: oklch(0.962 0.005 265);
   --ink: oklch(0.21 0.04 265);
   --muted: oklch(0.46 0.022 265);
   --line: oklch(0.9 0.008 265);
@@ -34,11 +36,20 @@
 
   --z-nav: 100;
   --z-menu: 200;
+
+  /* Raio: a referência é muito arredondada. Três degraus, nada solto. */
+  --raio-cartao: clamp(1.25rem, 0.6rem + 2vw, 2.25rem);
+  --raio-bento: 1.25rem;
+  --raio-painel: 0.875rem;
+
+  /* Canvas: o azul do aparelho emoldurando a página inteira. */
+  --canvas: oklch(0.78 0.1 264);
 }
 
 [data-tema="escuro"] {
-  --bg: oklch(0.17 0.04 265);
+  --bg: oklch(0.145 0.035 265);
   --surface: oklch(0.225 0.045 265);
+  --card: oklch(0.205 0.04 265);
   --ink: oklch(0.97 0.005 265);
   --muted: oklch(0.755 0.022 265);
   --line: oklch(0.32 0.035 265);
@@ -57,6 +68,7 @@
 @theme inline {
   --color-bg: var(--bg);
   --color-surface: var(--surface);
+  --color-card: var(--card);
   --color-ink: var(--ink);
   --color-muted: var(--muted);
   --color-line: var(--line);
@@ -90,10 +102,16 @@
   }
 
   body {
-    /* `clip` e não `hidden`: corta o vazamento dos halos sem quebrar o
-       `position: sticky` do cabeçalho. */
     overflow-x: clip;
-    background: var(--bg);
+    /* O canvas colorido que emoldura o cartão da página. */
+    background:
+      radial-gradient(
+        120% 60% at 50% 0%,
+        oklch(0.86 0.07 264) 0%,
+        transparent 60%
+      ),
+      linear-gradient(180deg, var(--canvas) 0%, oklch(0.83 0.09 262) 100%);
+    background-attachment: fixed;
     color: var(--ink);
     font-size: var(--passo-0);
     line-height: 1.6;
@@ -104,6 +122,26 @@
   section {
     background: var(--bg);
     color: var(--ink);
+  }
+
+  /*
+   * Qualquer bloco que troca de tema leva a cor do texto junto. Sem isso, um
+   * <div data-tema="escuro"> dentro de uma seção clara herda tinta escura e o
+   * texto some no fundo.
+   */
+  [data-tema] {
+    color: var(--ink);
+  }
+
+  /* A página inteira vive dentro de um cartão flutuando sobre o canvas. */
+  .cartao {
+    max-width: 96rem;
+    margin-inline: auto;
+    border-radius: var(--raio-cartao);
+    /* `clip` preserva o recorte sem criar um contexto de rolagem. */
+    overflow: clip;
+    background: var(--bg);
+    box-shadow: 0 2rem 5rem -1.5rem oklch(0.2 0.06 264 / 0.35);
   }
 
   h1,
@@ -161,8 +199,57 @@
     max-width: 62ch;
   }
 
+  /* Cabeçalho de seção centralizado, como na referência. */
+  .centro {
+    margin-inline: auto;
+    text-align: center;
+  }
+
   .secao {
     padding-block: clamp(4.5rem, 3rem + 6vw, 9rem);
+  }
+
+  /* Cartão do bento: cinza claro, sem fio, cantos generosos. */
+  .bento {
+    background: var(--card);
+    border-radius: var(--raio-bento);
+    padding: clamp(1.5rem, 1rem + 2vw, 2.25rem);
+  }
+
+  /* Painel branco que vive dentro de um bento e carrega os dados. */
+  .painel {
+    background: var(--surface);
+    border-radius: var(--raio-painel);
+    box-shadow: 0 1px 2px oklch(0.2 0.04 265 / 0.06);
+  }
+
+  /* Chip flutuante: rótulo pequeno em cima, número grande embaixo. */
+  .chip {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    padding: 0.7rem 1rem;
+    border-radius: 0.9rem;
+    background: oklch(0.24 0.045 265 / 0.72);
+    box-shadow: inset 0 0 0 1px oklch(1 0 0 / 0.08);
+    backdrop-filter: blur(10px);
+    white-space: nowrap;
+  }
+
+  /* Aurora: a luz que sobe do rodapé do bloco escuro e dissolve no claro. */
+  .aurora {
+    position: absolute;
+    inset-inline: -10%;
+    bottom: -18%;
+    height: 72%;
+    pointer-events: none;
+    background: radial-gradient(
+      50% 50% at 50% 50%,
+      oklch(0.72 0.15 260 / 0.75) 0%,
+      oklch(0.58 0.16 263 / 0.4) 42%,
+      transparent 74%
+    );
+    filter: blur(30px);
   }
 
   /* Moldura de imagem: recorte, fio de contorno e um leve zoom no hover. */

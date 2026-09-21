@@ -94,8 +94,12 @@ export const produto = {
   precoDe: "12x de R$ 79,90",
   precoPor: "12x de R$ 16,58",
   precoAVista: "R$ 199",
-  imagem: "/img/maquininha.webp",
-  alt: "Maquininha Quadri azul, com impressora de bobina e tela mostrando o logo useQuadri",
+  imagem: "/img/hero-pagamentos.webp",
+  alt: "Maquininha Quadri ao centro, um cliente pagando por aproximação com o celular de um lado e com cartão de crédito do outro",
+  /* Recorte do aparelho sozinho: entra no lugar da cena em telas estreitas. */
+  imagemSozinho: "/img/maquininha.webp",
+  altSozinho:
+    "Maquininha Quadri azul, com impressora de bobina e tela mostrando o logo useQuadri",
 };
 
 export const formasDeReceber: { titulo: string; texto: string; icone: NomeIcone }[] = [

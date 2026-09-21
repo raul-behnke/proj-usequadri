@@ -14,37 +14,32 @@ export function Fechamento() {
 
   return (
     <section id="contato" data-tema="escuro" className="relative overflow-hidden">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute bottom-[-30%] left-1/2 h-[36rem] w-[36rem] -translate-x-1/2 rounded-full opacity-25 blur-[120px]"
-        style={{
-          background: "radial-gradient(circle, var(--brand) 0%, transparent 70%)",
-        }}
-      />
+      <div className="relative isolate overflow-hidden">
+        <div aria-hidden className="aurora bottom-[-60%] opacity-60" />
 
-      <div className="largura relative secao">
-        <h2 className="max-w-[16ch] text-t1">
+      <div className="largura relative z-10 secao text-center">
+        <h2 className="centro max-w-[18ch] text-t1">
           Sua maquininha com a menor taxa está a um clique.
         </h2>
-        <p className="prosa mt-6 text-guia text-muted">
+        <p className="centro prosa mt-5 text-guia text-muted">
           Não deixe o dinheiro que é seu ficar nas mãos de quem cobra caro
           demais.
         </p>
 
-        <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+        <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
           <Botao href={linkContato()} {...externo}>
             Quero minha maquininha agora
           </Botao>
           <Botao
             href={linkContato("Olá! Quero tirar uma dúvida sobre a Quadri.")}
-            variante="secundario"
+            variante="claro"
             {...externo}
           >
             {temWhatsApp ? "Falar pelo WhatsApp" : "Falar com um consultor"}
           </Botao>
         </div>
 
-        <ul className="mt-10 flex flex-wrap gap-x-7 gap-y-3 text-menor text-muted">
+        <ul className="mt-9 flex flex-wrap justify-center gap-x-7 gap-y-3 text-menor text-muted">
           {garantias.map((g) => (
             <li key={g} className="flex items-center gap-2.5">
               <Simbolo className="h-3 w-3 shrink-0 text-brand" />
@@ -54,7 +49,9 @@ export function Fechamento() {
         </ul>
       </div>
 
-      <footer className="relative border-t border-line">
+      </div>
+
+      <footer className="relative z-10 border-t border-line">
         <div className="largura grid gap-x-10 gap-y-10 py-14 md:grid-cols-[1.4fr_1fr_1fr]">
           <div>
             <Marca />

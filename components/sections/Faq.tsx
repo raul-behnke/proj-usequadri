@@ -6,15 +6,15 @@ import { faq } from "@/content/site";
  */
 export function Faq() {
   return (
-    <section id="faq" className="secao border-t border-line bg-surface">
-      <div className="largura grid gap-x-16 gap-y-10 lg:grid-cols-[0.7fr_1.3fr]">
-        <h2 className="text-t2">Dúvidas que todo mundo tem.</h2>
+    <section id="faq" className="secao">
+      <div className="largura">
+        <h2 className="centro text-t2">Dúvidas que todo mundo tem.</h2>
 
-        <div>
+        <div className="bento mx-auto mt-12 max-w-[52rem]">
           {faq.map((item, i) => (
             <details
               key={item.pergunta}
-              className={`group py-2 ${i > 0 ? "border-t border-line" : ""}`}
+              className={`group py-1 ${i > 0 ? "border-t border-line" : ""}`}
             >
               <summary className="flex min-h-[3.25rem] cursor-pointer list-none items-center justify-between gap-6 py-3 text-guia font-semibold">
                 {item.pergunta}

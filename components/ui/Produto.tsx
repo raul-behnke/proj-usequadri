@@ -6,17 +6,13 @@ import { motion, useReducedMotion, useScroll, useTransform } from "motion/react"
 import { produto } from "@/content/site";
 
 /**
- * O aparelho do hero, com movimento.
+ * A cena de pagamento que fecha o bloco escuro: maquininha ao centro, cliente
+ * pagando por aproximação de um lado e com cartão do outro.
  *
- * Três camadas, todas ancoradas na mesma caixa da imagem:
- *  1. a foto, que sobe mais devagar que o texto enquanto a página rola;
- *  2. as ondas de aproximação saindo do símbolo contactless, em 45%/14% da
- *     imagem, achatadas e giradas para acompanhar o plano inclinado da tampa;
- *  3. um brilho que corre pelo corpo uma vez, recortado pelo próprio alpha da
- *     foto usada como máscara.
+ * A foto tem fundo transparente, então a aurora azul atravessa por trás do
+ * aparelho em vez de ficar escondida atrás de um retângulo branco.
  *
- * Com `prefers-reduced-motion`, sobra a foto parada — nada de conteúdo
- * dependendo de animação para existir.
+ * Com `prefers-reduced-motion`, sobra a foto parada.
  */
 export function Produto() {
   const alvo = useRef<HTMLDivElement>(null);
@@ -27,60 +23,37 @@ export function Produto() {
     offset: ["start end", "end start"],
   });
 
-  const y = useTransform(scrollYProgress, [0, 1], [30, -60]);
-  const rotate = useTransform(scrollYProgress, [0, 1], [0.8, -1.2]);
+  const y = useTransform(scrollYProgress, [0, 1], [26, -26]);
 
   return (
-    <div ref={alvo} className="relative flex justify-center lg:justify-end">
+    <div ref={alvo} className="relative z-10 flex items-end px-4 pb-10 lg:pb-16">
       <motion.div
-        style={semMovimento ? undefined : { y, rotate }}
-        className="relative w-[min(78%,20rem)] lg:w-[min(100%,25rem)]"
+        style={semMovimento ? undefined : { y }}
+        className="mx-auto w-full max-w-[74rem]"
       >
+        {/*
+          Abaixo de 640px a cena inteira encolhe a ponto de os rótulos dos
+          chips virarem ilegíveis. Nessa largura entra o recorte do aparelho
+          sozinho, grande o bastante para se ler.
+        */}
         <Image
-          src={produto.imagem}
-          alt={produto.alt}
+          src={produto.imagemSozinho}
+          alt={produto.altSozinho}
           width={673}
           height={1010}
           priority
-          sizes="(max-width: 1024px) 70vw, 34vw"
-          className="entrada h-auto w-full"
-          style={{ filter: "drop-shadow(var(--sombra-produto))" }}
+          sizes="60vw"
+          className="mx-auto h-auto w-[min(62%,15rem)] sm:hidden"
         />
-
-        {!semMovimento && (
-          <>
-            {/* Ondas de aproximação: o gesto que vende o produto. */}
-            <div
-              aria-hidden
-              className="pointer-events-none absolute"
-              style={{
-                left: "45%",
-                top: "14%",
-                transform: "translate(-50%, -50%) rotate(-24deg) scaleY(0.42)",
-              }}
-            >
-              {[0, 1, 2].map((i) => (
-                <span
-                  key={i}
-                  className="onda absolute left-1/2 top-1/2 block h-40 w-40 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-[var(--brand)]"
-                  style={{ animationDelay: `${i * 0.9}s` }}
-                />
-              ))}
-            </div>
-
-            {/* Brilho recortado pelo alpha da própria foto. */}
-            <span
-              aria-hidden
-              className="brilho pointer-events-none absolute inset-0"
-              style={{
-                maskImage: `url(${produto.imagem})`,
-                WebkitMaskImage: `url(${produto.imagem})`,
-                maskSize: "100% 100%",
-                WebkitMaskSize: "100% 100%",
-              }}
-            />
-          </>
-        )}
+        <Image
+          src={produto.imagem}
+          alt={produto.alt}
+          width={1600}
+          height={869}
+          priority
+          sizes="(max-width: 1024px) 100vw, 74rem"
+          className="hidden h-auto w-full max-w-none sm:block"
+        />
       </motion.div>
     </div>
   );

@@ -16,18 +16,20 @@ export function Calculadora() {
   const r = simular(bruto, taxa);
 
   return (
-    <section id="calculadora" data-tema="escuro" className="secao">
-      <div className="largura grid items-start gap-x-16 gap-y-8 lg:grid-cols-2 lg:gap-y-12">
-        <div>
-          <h2 className="max-w-[18ch] text-t2">
-            Simule uma venda e veja quanto sobra.
-          </h2>
-          <p className="prosa mt-5 text-muted">
-            São as mesmas taxas do topo da página, sem asterisco. Ajuste o valor
-            e a forma de pagamento.
-          </p>
+    <section id="calculadora" className="secao">
+      <div className="largura">
+        <h2 className="centro max-w-[20ch] text-t2">
+          Simule uma venda e veja quanto sobra.
+        </h2>
+        <p className="centro prosa mt-4 text-muted">
+          São as mesmas taxas do topo da página, sem asterisco. Ajuste o valor e
+          a forma de pagamento.
+        </p>
 
-          <div className="mt-8">
+        <div className="bento mt-12 grid items-start gap-x-12 gap-y-8 lg:grid-cols-2">
+        <div>
+
+          <div>
             <label
               htmlFor="valor"
               className="block text-menor font-semibold text-muted"
@@ -46,7 +48,7 @@ export function Calculadora() {
                 step={10}
                 value={bruto}
                 onChange={(e) => setBruto(Number(e.target.value))}
-                className="numero w-full min-w-0 border-b-2 border-line bg-transparent pb-1 text-t2 font-bold text-ink outline-none focus:border-brand"
+                className="numero w-full min-w-0 border-b-2 border-line bg-transparent pb-1 text-t2 font-bold text-ink outline-none focus:border-action"
               />
             </div>
 
@@ -58,7 +60,7 @@ export function Calculadora() {
               step={10}
               value={Math.min(MAX, Math.max(MIN, bruto || MIN))}
               onChange={(e) => setBruto(Number(e.target.value))}
-              className="mt-6 h-11 w-full cursor-pointer accent-[var(--brand)]"
+              className="mt-6 h-11 w-full cursor-pointer accent-[var(--action)]"
             />
           </div>
 
@@ -75,10 +77,10 @@ export function Calculadora() {
                     type="button"
                     aria-pressed={ativa}
                     onClick={() => setTaxaId(t.id)}
-                    className={`min-h-11 rounded-lg border px-4 text-menor font-semibold transition-colors ${
+                    className={`min-h-11 rounded-full border px-5 text-menor font-semibold transition-colors ${
                       ativa
-                        ? "border-brand bg-brand text-[oklch(0.18_0.045_265)]"
-                        : "border-line text-muted hover:border-brand hover:text-ink"
+                        ? "border-action bg-action text-action-ink"
+                        : "border-line text-muted hover:border-action hover:text-ink"
                     }`}
                   >
                     {t.rotuloCurto}
@@ -89,12 +91,9 @@ export function Calculadora() {
           </fieldset>
         </div>
 
-        <div
-          aria-live="polite"
-          className="rounded-xl border border-line bg-surface p-8 lg:p-10"
-        >
+        <div aria-live="polite" className="painel p-7 lg:p-9">
           <p className="text-menor text-muted">Você recebe {r.prazo}</p>
-          <p className="numero mt-2 text-t1 font-bold text-brand">
+          <p className="numero mt-2 text-t1 font-bold text-action">
             <ValorAnimado valor={r.liquido} />
           </p>
 
@@ -126,6 +125,7 @@ export function Calculadora() {
             inclusa. As condições finais são confirmadas pelo consultor de
             acordo com o perfil do seu negócio.
           </p>
+        </div>
         </div>
       </div>
     </section>

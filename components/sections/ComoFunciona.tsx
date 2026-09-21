@@ -6,15 +6,15 @@ import { passos } from "@/content/site";
  */
 export function ComoFunciona() {
   return (
-    <section id="como-funciona" className="secao border-t border-line">
+    <section id="como-funciona" className="secao">
       <div className="largura">
-        <h2 className="max-w-[22ch] text-t2">
+        <h2 className="centro max-w-[22ch] text-t2">
           Começar com a Quadri é mais simples do que você imagina.
         </h2>
 
-        <ol className="revelar mt-12 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
+        <ol className="revelar mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {passos.map((passo, i) => (
-            <li key={passo.titulo} className="border-t-2 border-ink pt-5">
+            <li key={passo.titulo} className="bento">
               <span className="numero block text-t3 font-bold text-action">
                 {String(i + 1).padStart(2, "0")}
               </span>

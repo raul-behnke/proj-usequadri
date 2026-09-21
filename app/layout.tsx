@@ -78,8 +78,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-BR" className={archivo.variable}>
-      <body className="font-sans">
-        {children}
+      <body className="font-sans p-2 sm:p-3 lg:p-5">
+        <div className="cartao">{children}</div>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(dadosEstruturados) }}

@@ -1,4 +1,3 @@
-import { Cabecalho } from "@/components/sections/Cabecalho";
 import { Hero } from "@/components/sections/Hero";
 import { Numeros } from "@/components/sections/Numeros";
 import { FormasDeReceber } from "@/components/sections/FormasDeReceber";
@@ -17,7 +16,6 @@ import { Fechamento } from "@/components/sections/Fechamento";
 export default function Home() {
   return (
     <>
-      <Cabecalho />
       <main>
         <Hero />
         <Numeros />

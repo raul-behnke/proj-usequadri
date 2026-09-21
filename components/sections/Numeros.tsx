@@ -8,7 +8,14 @@ import { numeros, provaFundo } from "@/content/site";
  */
 export function Numeros() {
   return (
-    <section data-tema="escuro" className="relative isolate overflow-hidden">
+    <section className="pt-4 pb-4">
+      <div
+        data-tema="escuro"
+        /* Fundo próprio, e não só a foto: se a imagem não carregar, o texto
+           claro continua sobre escuro em vez de cair no branco. */
+        style={{ background: "var(--bg)" }}
+        className="largura relative isolate overflow-hidden rounded-[var(--raio-bento)]"
+      >
       <Image
         src={provaFundo.imagem}
         alt=""
@@ -29,7 +36,7 @@ export function Numeros() {
         }}
       />
 
-      <div className="largura py-20 lg:py-24">
+      <div className="px-[clamp(1.5rem,1rem+2vw,2.75rem)] py-14 lg:py-16">
         <p className="prosa text-guia">
           Quem escolheu a Quadri aprovou e não voltou atrás.
         </p>
@@ -49,6 +56,7 @@ export function Numeros() {
             </div>
           ))}
         </dl>
+      </div>
       </div>
     </section>
   );
