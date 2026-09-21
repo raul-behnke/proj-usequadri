@@ -42,6 +42,16 @@ A faixa de taxas do hero e a calculadora leem o mesmo array de
 `content/site.ts`. Por construção, não podem divergir — era o que acontecia no
 site antigo, onde a calculadora mostrava 0,99% e o hero 2,69%.
 
+## Imagem de compartilhamento
+
+`public/img/og.jpg` (1200×630) é renderizada, não gerada por IA — modelo de
+imagem erra tipografia, e texto torto num card de compartilhamento derruba
+justamente a autoridade que ele deveria passar.
+
+A fonte está em `docs/og-card.html`: usa a Archivo real do build, o recorte do
+produto e os mesmos tokens de cor do site. Para refazer, sirva `out/` numa
+porta local, abra o card em 1200×630 e capture a tela.
+
 ## Documentos
 
 - `PRODUCT.md` — público, propósito, personalidade, anti-referências

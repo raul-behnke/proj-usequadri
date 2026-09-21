@@ -16,6 +16,7 @@ const archivo = Archivo({
 });
 
 const url = "https://usequadri.com";
+const prefixo = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 /**
  * Publicações em subpasta são pré-visualização. Elas não podem ser indexadas:
@@ -23,8 +24,20 @@ const url = "https://usequadri.com";
  */
 const previa = Boolean(process.env.NEXT_PUBLIC_BASE_PATH);
 
+/** Onde a página está realmente hospedada — é daqui que a imagem de
+ *  compartilhamento é servida. O canonical continua apontando para o domínio
+ *  oficial, mesmo na prévia. */
+const base = previa ? `https://lamna.tech${prefixo}` : url;
+
+const compartilhamento = {
+  url: `${base}/img/og.jpg`,
+  width: 1200,
+  height: 630,
+  alt: "Maquininha Quadri ao lado das taxas: Pix 0,00%, débito 0,75% e crédito 2,69%",
+};
+
 export const metadata: Metadata = {
-  metadataBase: new URL(url),
+  metadataBase: new URL(base),
   title: "Quadri — maquininha com Pix sem taxa e crédito a partir de 2,69%",
   description:
     "Maquininha de cartão a partir de R$ 199, Pix 0,00%, débito 0,75% e crédito 2,69%. Sem mensalidade, sem fidelidade e com gente de verdade atendendo.",
@@ -39,12 +52,14 @@ export const metadata: Metadata = {
     title: "Quadri — maquininha com Pix sem taxa e crédito a partir de 2,69%",
     description:
       "Pix 0,00%, débito 0,75%, crédito 2,69%. Maquininha por R$ 199, sem mensalidade e sem fidelidade.",
+    images: [compartilhamento],
   },
   twitter: {
     card: "summary_large_image",
     title: "Quadri — maquininha com as menores taxas",
     description:
       "Pix 0,00%, débito 0,75%, crédito 2,69%. Sem mensalidade, sem fidelidade.",
+    images: [compartilhamento.url],
   },
   robots: previa ? { index: false, follow: false } : { index: true, follow: true },
 };
