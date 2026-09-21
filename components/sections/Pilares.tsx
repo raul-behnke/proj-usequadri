@@ -1,4 +1,5 @@
-import { pilares, taxas } from "@/content/site";
+import Image from "next/image";
+import { pilares, produtoAngulos, taxas } from "@/content/site";
 import { Simbolo } from "@/components/ui/Marca";
 import { formatarPercentual } from "@/lib/calculator";
 
@@ -18,7 +19,7 @@ export function Pilares() {
         </h2>
 
         <div className="revelar mt-12 grid gap-4 lg:grid-cols-3">
-          <article className="bento lg:col-span-2">
+          <article className="bento self-start lg:col-span-2">
             <h3 className="max-w-[18ch] text-t3">{principal.titulo}</h3>
             <p className="prosa mt-3 text-menor text-muted">
               {principal.texto}
@@ -57,11 +58,29 @@ export function Pilares() {
           </article>
 
           <div className="grid gap-4">
-            {demais.map((pilar) => (
-              <article key={pilar.titulo} className="bento">
-                <h3 className="max-w-[16ch] text-guia">{pilar.titulo}</h3>
-                <p className="mt-2.5 text-menor text-muted">{pilar.texto}</p>
-                <ul className="mt-5 space-y-2 text-menor">
+            {demais.map((pilar) => {
+              const angulo = pilar.angulo
+                ? produtoAngulos[pilar.angulo]
+                : null;
+              return (
+              <article key={pilar.titulo} className="bento relative overflow-hidden">
+                {angulo && (
+                  <Image
+                    src={angulo.imagem}
+                    alt=""
+                    role="presentation"
+                    width={800}
+                    height={1276}
+                    loading="lazy"
+                    sizes="14rem"
+                    className="pointer-events-none absolute -right-6 -bottom-8 w-32 opacity-90 lg:w-36"
+                  />
+                )}
+                <h3 className="relative max-w-[14ch] text-guia">{pilar.titulo}</h3>
+                <p className="relative mt-2.5 max-w-[26ch] text-menor text-muted">
+                  {pilar.texto}
+                </p>
+                <ul className="relative mt-5 max-w-[24ch] space-y-2 text-menor">
                   {pilar.itens.map((item) => (
                     <li key={item} className="flex items-center gap-2.5">
                       <Simbolo className="h-3 w-3 shrink-0 text-action" />
@@ -70,7 +89,8 @@ export function Pilares() {
                   ))}
                 </ul>
               </article>
-            ))}
+              );
+            })}
           </div>
         </div>
       </div>

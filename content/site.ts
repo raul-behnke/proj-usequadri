@@ -130,7 +130,25 @@ export const formasDeReceber: { titulo: string; texto: string; icone: NomeIcone 
   },
 ];
 
-/** Cenas por vertical, geradas na mesma direção de arte da foto do balcão. */
+/**
+ * Cenas de ambiente. As duas primeiras têm gente e abrem a seção em destaque;
+ * as oito seguintes cobrem os segmentos.
+ *
+ * TODO(cliente): todas geradas por IA. Ver PENDENTE.md.
+ */
+export const cenasDestaque = [
+  {
+    imagem: "/img/pessoas-atendimento.webp",
+    alt: "Lojista de avental estende a maquininha Quadri sobre o balcão para uma cliente aproximar o cartão",
+    legenda: "No balcão, na mão de quem atende",
+  },
+  {
+    imagem: "/img/pessoas-balcao.webp",
+    alt: "Cliente paga por aproximação com o celular na maquininha Quadri segurada pelo lojista",
+    legenda: "Pagamento por aproximação, em segundos",
+  },
+];
+
 export const cenas = [
   {
     imagem: "/img/vertical-salao.webp",
@@ -143,9 +161,29 @@ export const cenas = [
     legenda: "Farmácias e drogarias",
   },
   {
+    imagem: "/img/vertical-padaria.webp",
+    alt: "Maquininha Quadri no balcão de mármore de uma padaria, com cestos de pão ao fundo",
+    legenda: "Padarias e confeitarias",
+  },
+  {
     imagem: "/img/vertical-mercearia.webp",
     alt: "Maquininha Quadri no balcão de uma mercearia, ao lado de caixas de frutas",
     legenda: "Mercearias e hortifrútis",
+  },
+  {
+    imagem: "/img/vertical-roupas.webp",
+    alt: "Maquininha Quadri no balcão de caixa de uma loja de roupas, com araras ao fundo",
+    legenda: "Roupas e calçados",
+  },
+  {
+    imagem: "/img/vertical-petshop.webp",
+    alt: "Maquininha Quadri no balcão de um pet shop, com prateleiras de ração ao fundo",
+    legenda: "Pet shops",
+  },
+  {
+    imagem: "/img/vertical-oficina.webp",
+    alt: "Maquininha Quadri na bancada de uma oficina mecânica, com carro e ferramentas ao fundo",
+    legenda: "Oficinas e autopeças",
   },
   {
     imagem: "/img/vertical-foodtruck.webp",
@@ -153,6 +191,26 @@ export const cenas = [
     legenda: "Delivery e food trucks",
   },
 ];
+
+/** Recortes de produto para os blocos que hoje são só texto. */
+export const produtoAngulos = {
+  comprovante: {
+    imagem: "/img/produto-comprovante.webp",
+    alt: "Maquininha Quadri imprimindo um comprovante de papel",
+  },
+  tras: {
+    imagem: "/img/produto-tras.webp",
+    alt: "Maquininha Quadri vista de três quartos, mostrando a lateral e a tampa da impressora",
+  },
+  deitada: {
+    imagem: "/img/produto-deitada.webp",
+    alt: "Maquininha Quadri deitada, vista de cima em ângulo",
+  },
+  aberta: {
+    imagem: "/img/produto-aberta.webp",
+    alt: "Maquininha Quadri com a tampa aberta, mostrando a bobina de papel encaixada",
+  },
+} as const;
 
 export const pilares = [
   {
@@ -166,12 +224,14 @@ export const pilares = [
     texto:
       "Antecipação de recebíveis com condições especiais. Você vende hoje e pode ter o dinheiro na hora, em 30 dias ou no seu fluxo — você decide.",
     itens: ["Painel gestor de vendas e recebíveis", "Conta digital inclusa"],
+    angulo: "tras" as const,
   },
   {
     titulo: "Gente de verdade atendendo",
     texto:
       "Atendimento ágil, sem robôs e sem fila de espera. Porque quando você precisa de ajuda, não dá para esperar.",
     itens: ["Aprovação em poucos minutos", "Sem papelada interminável"],
+    angulo: "deitada" as const,
   },
 ];
 

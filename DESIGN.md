@@ -100,6 +100,25 @@ do número.
 
 As demais cenas continuam em moldura (`.quadro`), na faixa de segmentos.
 
+## As duas famílias de imagem
+
+Toda imagem do site pertence a uma das duas, e elas não se misturam na mesma
+faixa:
+
+**A — estúdio recortado.** Fundo transparente, luz de topo, azul fiel do
+aparelho. Vive nos blocos escuros, com a aurora atravessando por trás.
+Hero (cena de pagamento), fechamento (comprovante saindo), e os recortes de
+apoio nos pilares e no Quem somos.
+
+**B — cena de ambiente.** Comércio brasileiro de rua, luz quente lateral,
+profundidade rasa, aparelho à direita do centro — é por isso que o recorte
+vertical usa `object-position: 64%`. Vive nos blocos claros, dentro de
+`.quadro`. Oito verticais e duas cenas com lojista.
+
+Regra de produção: toda cena é gerada com a foto de estúdio do aparelho como
+referência, para o produto ser o mesmo objeto em todas. Nada de texto
+inventado dentro da imagem; o único texto é o logo real na tela.
+
 ## Componentes
 
 - **Botão** (`components/ui/Botao.tsx`): primário e secundário, altura mínima

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { cenas, depoimentos, segmentos } from "@/content/site";
+import { cenas, cenasDestaque, depoimentos, segmentos } from "@/content/site";
 
 export function Clientes() {
   return (
@@ -9,7 +9,28 @@ export function Clientes() {
           Comércio de rua, de todo tipo, no Brasil inteiro.
         </h2>
 
-        <ul className="revelar mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <ul className="revelar mt-12 grid gap-4 sm:grid-cols-2">
+          {cenasDestaque.map((cena) => (
+            <li key={cena.imagem} className="bento p-3">
+              <div className="quadro aspect-[16/10] w-full">
+                <Image
+                  src={cena.imagem}
+                  alt={cena.alt}
+                  width={1400}
+                  height={933}
+                  loading="lazy"
+                  sizes="(max-width: 640px) 100vw, 50vw"
+                  className="h-full w-full object-cover"
+                />
+              </div>
+              <p className="mt-3 px-1 pb-1 text-menor text-muted">
+                {cena.legenda}
+              </p>
+            </li>
+          ))}
+        </ul>
+
+        <ul className="revelar mt-4 grid gap-4 grid-cols-2 lg:grid-cols-4">
           {cenas.map((cena) => (
             <li key={cena.imagem} className="bento p-3">
               <div className="quadro aspect-[4/5] w-full sm:aspect-[3/4]">

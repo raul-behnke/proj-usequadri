@@ -1,9 +1,11 @@
+import Image from "next/image";
 import { Botao } from "@/components/ui/Botao";
 import { Marca, Simbolo } from "@/components/ui/Marca";
 import {
   empresa,
   garantias,
   linkContato,
+  produtoAngulos,
   navegacao,
   politicas,
   temWhatsApp,
@@ -38,6 +40,20 @@ export function Fechamento() {
             {temWhatsApp ? "Falar pelo WhatsApp" : "Falar com um consultor"}
           </Botao>
         </div>
+
+        {/*
+          Fecha a página como o hero abre: mesmo recorte de estúdio sobre a
+          aurora, gesto oposto — lá o pagamento começa, aqui o comprovante sai.
+        */}
+        <Image
+          src={produtoAngulos.comprovante.imagem}
+          alt={produtoAngulos.comprovante.alt}
+          width={1400}
+          height={1025}
+          loading="lazy"
+          sizes="(max-width: 1024px) 80vw, 34rem"
+          className="mx-auto mt-12 w-[min(80%,34rem)]"
+        />
 
         <ul className="mt-9 flex flex-wrap justify-center gap-x-7 gap-y-3 text-menor text-muted">
           {garantias.map((g) => (
