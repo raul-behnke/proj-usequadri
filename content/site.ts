@@ -96,7 +96,9 @@ export const produto = {
   precoAVista: "R$ 199",
   imagem: "/img/hero-pagamentos.webp",
   alt: "Maquininha Quadri ao centro, um cliente pagando por aproximação com o celular de um lado e com cartão de crédito do outro",
-  /* Recorte do aparelho sozinho: entra no lugar da cena em telas estreitas. */
+  /* A mesma cena montada em retrato, para telas estreitas. */
+  imagemMobile: "/img/hero-pagamentos-mobile.webp",
+  /* Recorte do aparelho sozinho, disponível para outros usos. */
   imagemSozinho: "/img/maquininha.webp",
   altSozinho:
     "Maquininha Quadri azul, com impressora de bobina e tela mostrando o logo useQuadri",

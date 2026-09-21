@@ -32,18 +32,18 @@ export function Produto() {
         className="w-full"
       >
         {/*
-          Abaixo de 640px a cena inteira encolhe a ponto de os rótulos dos
-          chips virarem ilegíveis. Nessa largura entra o recorte do aparelho
-          sozinho, grande o bastante para se ler.
+          Duas montagens da mesma cena, não a mesma imagem espremida: deitada
+          acima de 640px, em pé abaixo disso. Na versão larga os rótulos dos
+          chips cairiam abaixo de 7px num celular.
         */}
         <Image
-          src={produto.imagemSozinho}
-          alt={produto.altSozinho}
-          width={673}
-          height={1010}
+          src={produto.imagemMobile}
+          alt={produto.alt}
+          width={900}
+          height={1303}
           priority
-          sizes="60vw"
-          className="mx-auto mb-10 h-auto w-[min(62%,15rem)] sm:hidden"
+          sizes="100vw"
+          className="h-auto w-full sm:hidden"
         />
         <Image
           src={produto.imagem}
